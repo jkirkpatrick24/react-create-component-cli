@@ -1,6 +1,6 @@
 {
   "name": "@jkirkpatrick24/react-create-component-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "cli tool for creating react/redux components",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,10 @@
   "dependencies": {
     "lodash.head": "^4.0.1",
     "minimist": "^1.2.0"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/jkirkpatrick24/react-create-component-cli"
   },
   "preferGlobal": true,
   "bin": {

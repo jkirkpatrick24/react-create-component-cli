@@ -9,7 +9,7 @@ Currently this package assumes you are using a few libraries within your react/r
   - [react-resolve-dependencies](https://github.com/eadmundo/react-resolve-dependencies)
 
 ```bash
-  $ npm -i -g @jkirkpatrick24/react-create-component-cli
+  $ npm i -g @jkirkpatrick24/react-create-component-cli
   $ mkcpt $ARGS
 ```
 ### Example Component
