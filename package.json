@@ -1,0 +1,31 @@
+{
+  "name": "@jkirkpatrick24/react-create-component-cli",
+  "version": "0.1.0",
+  "description": "cli tool for creating react/redux components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf index.js && gulp"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "node"
+  ],
+  "author": "James Kirkpatrick",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.head": "^4.0.1",
+    "minimist": "^1.2.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "mkcpt": "index.js"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "rimraf": "^2.6.2"
+  }
+}
