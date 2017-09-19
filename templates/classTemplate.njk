@@ -1,0 +1,58 @@
+import React from 'react';
+{%- if hasDependencies %}
+import resolveDependencies from 'react-resolve-dependencies';
+{%- endif %}
+{%- if isConnected %}
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { makeConnectArgs } from 'redux-threads';
+import * as selectors from '../selectors';
+import * as actions from '../actions';
+{% endif %}
+export class {{ name }} extends React.{{ "Pure" if isPure === true }}Component {
+  
+  {%- if hasDependencies %}
+  static dependencies = [];
+  {% endif %}
+  {%- if hasConstructor %}
+  constructor(props) {
+    super(props);
+  }
+  {% endif %}
+  {%- if cwm %}
+  componentWillMount(){}
+  {% endif %}
+  {%- if cdm %}
+  componentDidMount(){}
+  {% endif %}
+  {%- if cwu %}
+  componentWillUnmount(){}
+  {% endif %}
+  render() {
+    return(
+
+    );
+  }
+
+}
+{% if isConnected %}
+const pageThread = [
+  selectors,
+  actions,
+  (stateProps, dispatchProps) => ({})
+]
+
+const connectArgs = makeConnectArgs(
+  pageThread
+);
+{% endif %}
+{% if isConnected -%}
+export default compose(
+  {{- "resolveDependencies()" if hasDependencies }}
+  connect(...connectArgs)
+)({{ name }});
+{% elif hasDependencies -%}
+  export default resolveDependencies()({{ name }});
+{% else -%}
+  export default {{ name }};
+{%- endif %}
