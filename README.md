@@ -1,10 +1,10 @@
 # react-create-component-cli
 
-react-create-component-cli is simple cli tool to create boilerplate for react components. It is tightly coupled to redux.
+react-create-component-cli is simple cli tool to create boilerplate for react components. It makes use of [nunjucks](https://mozilla.github.io/nunjucks/) templates to construct the component files.
 
 ## Usage
 
-Currently this package assumes you are using a few libraries within your react/redux application
+Currently this package creates components using the assumption that you are using a few libraries within your react/redux application. These are not required to create basic components.
   - [redux-threads](https://github.com/stonevanzuiden/redux-threads)
   - [react-resolve-dependencies](https://github.com/eadmundo/react-resolve-dependencies)
 
@@ -13,7 +13,7 @@ Currently this package assumes you are using a few libraries within your react/r
   $ mkcpt $ARGS
 ```
 ### Example Component
-`mkcpt --name TestComponent --hasDependencies --isConnected`
+`$ mkcpt --name TestComponent --hasDependencies --isConnected`
 
 ```js
 // TestComponent.react.js
@@ -60,13 +60,14 @@ Currently makes use of the following flags
 ```
   --cdm                // false
   --cwm                // false
+  --cwu                // false
   --ext                // react.js
   --hasConstructor     // false
   --hasDependencies    // false
   --isConnected        // false
   --isPure             // true
+  --isFunctional       // false
   --name               // index
-  --path               // current directory
 ```
 
 #### `--cdm`
@@ -80,6 +81,12 @@ Creates the `componentDidMount` lifecycle method if `true`
 defaults to false.
 
 Creates the `componentWillMount` lifecycle method if `true`
+
+#### `--cwu`
+
+defaults to false.
+
+Creates the `componentWillUnmount` lifecycle method if `true`
 
 #### `--hasConstructor`
 
@@ -97,9 +104,8 @@ import resolveDependencies from 'react-resolve-dependencies';
 
 static dependencies = [];
 
-//export default compose(
-  resolveDependencies()
-//)();
+export default resolveDependencies()(componentName);
+
 ```
 
 #### `--isConnected`
@@ -125,9 +131,25 @@ const connectArgs = makeConnectArgs(
   pageThread
 );
 
-//compose(
+compose(
   connect(...connectArgs)
-//)()
+)()
+```
+
+#### `--isFunctional`
+
+Defaults to `false`
+
+renders a functional component
+
+```
+const {{ name }} => () {
+  return (
+    
+  );
+}
+
+export default name
 ```
 
 #### `--isPure`
@@ -141,12 +163,6 @@ While true, uses `React.PureComponent`. Otherwise uses `React.Component`
 Defaults to "index".
 
 Name of the component.
-
-#### `--path`
-
-Defaults to current directory.
-
-The target directory where you will generate the component file.
 
 ## Liscence
 
