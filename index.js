@@ -49,7 +49,7 @@ const templateFile = config.isFunctional
   ? 'functionalTemplate.njk'
   : 'classTemplate.njk'
 
-fs.readFile(`templates/${templateFile}`, 'utf8', function (err,data) {
+fs.readFile(`${__dirname}/templates/${templateFile}`, 'utf8', function (err,data) {
   if (err) {
     return console.log(err);
   }
